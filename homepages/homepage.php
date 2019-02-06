@@ -5,27 +5,30 @@
  */
 function largo_register_default_homepage_layouts() {
 	// Load layouts from `layouts/`
-	$default_layouts = array(
-		'HomepageBlog',
-		'HomepageSingle',
-		'HomepageSingleWithFeatured',
-		'HomepageSingleWithSeriesStories',
-		'TopStories',
-		'LegacyThreeColumn',
+	$homepage_controls = array(
+		'layouts' => array(
+			'HomepageBlog',
+			'HomepageSingle',
+			'HomepageSingleWithFeatured',
+			'HomepageSingleWithSeriesStories',
+			'TopStories',
+			'LegacyThreeColumn',
+		),
+		'zones' => array(
+			'zones',
+		),
 	);
-	foreach( $default_layouts as $layout ) {
-		$layout_file = get_stylesheet_directory() . '/homepages/layouts/' . $layout . '.php';
-		if ( 0 === validate_file( $layout_file ) ) {
-			require_once( $layout_file );
+
+	foreach ( $homepage_controls as $folder => $controls ) {
+		foreach( $controls as $control ) {
+			$control_file = get_template_directory() . '/homepages/' . $folder . '/' . $control . '.php';
+			if ( 0 === validate_file( $control_file ) ) {
+				require_once( $control_file );
+			}
 		}
 	}
 
-	// Load zone components from `zones/`
-	$zones = glob(__DIR__ . '/zones/*.php');
-	foreach ($zones as $zone)
-		include_once $zone;
-
-	foreach ($default_layouts as $layout)
+	foreach ($homepage_controls['layouts'] as $layout)
 		register_homepage_layout($layout);
 }
 add_action('init', 'largo_register_default_homepage_layouts', 0);
