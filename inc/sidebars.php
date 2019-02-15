@@ -113,6 +113,12 @@ function largo_register_sidebars() {
 		}
 	}
 
+	// is the post_type_taxonomy setting active? get_option( 'post_types_enabled' )
+	// $enabled = ( ! of_get_option( 'post_types_enabled' ) == 0 );
+	// Get all post types
+	// Name sidebar and generate slug
+	// Add to sidebars array
+
 	// register the active widget areas
 	foreach ( $sidebars as $sidebar ) {
 		register_sidebar( array(
