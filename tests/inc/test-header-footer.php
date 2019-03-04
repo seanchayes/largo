@@ -21,7 +21,7 @@ class HeaderFooterTestFunctions extends WP_UnitTestCase {
 
 	function test_inn_logo() {
 		$this->expectOutputRegex('/[.*]+/'); // This is excessively greedy, it expects any output at all
-		$this->expectOutputRegex('/inn_logo_gray.png/'); // This is excessively greedy, it expects any output at all
+		$this->expectOutputRegex('/inn_light.svg/'); // This is excessively greedy, it expects any output at all
 		inn_logo();
 	}
 

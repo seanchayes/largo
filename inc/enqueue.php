@@ -58,7 +58,6 @@ if ( ! function_exists( 'largo_enqueue_js' ) ) {
 		 *
 		 * - modernizr.custom.js
 		 * - largoPlugins.js
-		 * - jquery.idTabs.js
 		 */
 		wp_enqueue_script(
 			'largo-modernizr',

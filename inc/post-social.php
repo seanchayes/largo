@@ -80,7 +80,7 @@ if ( ! function_exists( 'largo_post_social_links' ) ) {
 			$output .= sprintf(
 				$twitter_share,
 				// Yes, rawurlencode. Otherwise, the link will break. Use html_entity_decode to handle wordpress saving smart quotes as &#1234; entities.
-				rawurlencode( html_entity_decode( get_the_title(), ENT_QUOTES, "UTF-8" ) ),
+				rawurlencode( html_entity_decode( get_the_title(), ENT_QUOTES, get_option('blog_charset') ) ),
 				rawurlencode( get_permalink() ),
 				$via,
 				__( 'Tweet', 'largo' )
@@ -91,8 +91,8 @@ if ( ! function_exists( 'largo_post_social_links' ) ) {
 			$output .= sprintf(
 				'<span data-service="email" class="email share-button"><a href="mailto:?subject=%2$s&body=%3$s%0D%0A%4$s" target="_blank"><i class="icon-mail"></i> <span class="hidden-phone">%1$s</span></a></span>',
 				esc_attr( __( 'Email', 'largo' ) ),
-				rawurlencode( html_entity_decode( get_the_title(), ENT_QUOTES, "UTF-8" ) ), // subject
-				rawurlencode( html_entity_decode( strip_tags( get_the_excerpt() ), ENT_QUOTES, "UTF-8" ) ), // description
+				rawurlencode( html_entity_decode( get_the_title(), ENT_QUOTES, get_option( 'blog_charset' ) ) ), // subject
+				rawurlencode( html_entity_decode( strip_tags( get_the_excerpt() ), ENT_QUOTES, get_option( 'blog_charset' ) ) ), // description
 				rawurlencode( html_entity_decode( get_the_permalink() ) ) // url
 			);
 		}
