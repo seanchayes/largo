@@ -25,18 +25,27 @@ add_action( 'init', 'largo_add_mce_buttons' );
 
 /**
  * Add the module shortcode (used for pullquotes and asides within posts)
+ *
  * This is no longer used but is included here for backwards compatibility
+ *
+ * The module insertion is handled by largo/js/tinymce/plugins/largo/tinymce.js, which now inserts <aside> tags.
  *
  * @since 0.3
  */
 function largo_module_shortcode( $atts, $content, $code ) {
-    $atts = shortcode_atts( array(
-        'align' => 'left',
-        'width' => 'half',
-        'type' => 'aside',
-    ), $atts );
+	$atts = shortcode_atts( array(
+		'align' => 'left',
+		'width' => 'half',
+		'type' => 'aside',
+	), $atts );
 
-    return sprintf( '<aside class="module %s %s %s">%s</aside>', $atts['type'], $atts['align'], $atts['width'], $atts['content'] );
+	return sprintf(
+		'<aside class="module %s %s %s">%s</aside>',
+		$atts['type'],
+		$atts['align'],
+		$atts['width'],
+		$content
+	);
 }
 add_shortcode( 'module', 'largo_module_shortcode' );
 

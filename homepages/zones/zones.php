@@ -137,13 +137,16 @@ function homepage_feature_stories_list() {
 	$featured_stories = largo_home_featured_stories( $max );
 	foreach ( $featured_stories as $featured ) {
 		$shown_ids[] = $featured->ID;
-?>
-		<article class="featured-story">
-			<h5 class="top-tag"><?php largo_top_term( 'post=' . $featured->ID ); ?></h5>
-			<h4 class="related-story"><a href="<?php echo esc_url( get_permalink( $featured->ID ) ); ?>">
-				<?php echo $featured->post_title; ?></a></h4>
-		</article>
-<?php
+		?>
+			<article class="featured-story">
+				<?php largo_maybe_top_term( array( 'post' => $featured->ID ) ); ?>
+				<h4 class="related-story">
+					<a href="<?php echo esc_url( get_permalink( $featured->ID ) ); ?>">
+						<?php echo $featured->post_title; ?>
+					</a>
+				</h4>
+			</article>
+		<?php
 	}
 	$ret = ob_get_contents();
 	ob_end_clean();

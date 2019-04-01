@@ -12,16 +12,21 @@ This release contains bug fixes for Largo 0.6.
 ### Feature updates
 
 - Updates INN's logos in the `img/` folder. If your child theme redefines the function `inn_logo()`, please update that function to reference the new SVG image locations in `img/`. [Pull request #1633](https://github.com/INN/largo/pull/1633) for [issue #1621](https://github.com/INN/largo/issues/1631)
+- Adds the term's taxonomy slug and term slug in the format `taxonomy-term` as a class on the term in the output of `largo_top_term()`, `largo_category_and_tags()`, and `largo_maybe_top_term()`. [Pull request](https://github.com/INN/largo/pull/1648) for [issue #1646](https://github.com/INN/largo/issues/1646).
+- The arguments set on `largo_byline()` are now passed to the `largo_byline` filter as an array of argument name => argument value. [Pull request #1657](https://github.com/INN/largo/pull/1657) for [issue #1646](https://github.com/INN/largo/issues/1656).
 
 ### Fixes
 
 - Increases contrast of the floating social button icons against the background, to improve accessibility. [Pull request #1635](https://github.com/INN/largo/pull/1635/).
 - Fixes issue where floating social buttons were not clickable, because of z-index ordering. [Pull request #1635](https://github.com/INN/largo/pull/1635/) for [issue #1576](https://github.com/INN/largo/issues/1576).
 - Fixes links in social media buttons not respecting the blog's character set. [Pull request #1635](https://github.com/INN/largo/pull/1635/) for [issue #1283](https://github.com/INN/largo/issues/1283).
+- Fixes issue where `[module]content[/module]` was not rendering `content` in the output of the `largo_module_shortcode()` function. [Pull request #1645](https://github.com/INN/largo/pull/1645) for [issue #1639](https://github.com/INN/largo/issues/1639).
 - Function `largo_post_social_links` now respects the blog character set option. [Pull request #1635](https://github.com/INN/largo/pull/1635/) for [issue #1283](https://github.com/INN/largo/issues/1283).
 - Fixes PHP notices in class `Bootstrap_Walker_Nav_Menu`. [Pull request #1624](https://github.com/INN/largo/pull/1624) and [#1625](https://github.com/INN/largo/pull/1625) for [issue #1623](https://github.com/INN/largo/issues/1623) as part of [issue #1492](https://github.com/INN/largo/issues/1492).
 - Fixes a regression in the behavior of the Largo Follow widget. [Pull request #1600](https://github.com/INN/largo/pull/1600) for [issue #1599](https://github.com/INN/largo/issues/1599).
-- Fixes issue where post excerpt and featured media were not being used for open graph tags on post types that are `is_singular()` but not `is_single()`. [Pull request #1604)(https://github.com/INN/largo/pull/1604) for [issue #1602](https://github.com/INN/largo/issues/1602).
+- Fixes issue where post excerpt and featured media were not being used for open graph tags on post types that are `is_singular()` but not `is_single()`. [Pull request #1604](https://github.com/INN/largo/pull/1604) for [issue #1602](https://github.com/INN/largo/issues/1602).
+- Prevents `largo_top_term()` from calling `largo_category_and_tags()` when the post ID argument passed to `largo_top_term()` does not match `get_the_ID`'s post ID, because there is presently no way to pass that ID to `largo_category_and_tags()`. [Pull request #1648](https://github.com/INN/largo/pull/1648) for [issue #1647](https://github.com/INN/largo/issues/1647).
+- Fixes improper post ID argument passed to `largo_top_term()` in the homepage featured stories zone. [Pull request #1648](https://github.com/INN/largo/pull/1648).
 - Removes duplicate site title in opengraph tags for non-archive, non-`is_front_page()`, non-`is_singular()` URLs. [Pull request #1604](https://github.com/INN/largo/pull/1604) for [issue #1602](https://github.com/INN/largo/issues/1602).
 - Removes search form from global nav bar when on the search page, so that there's only one search form. [Pull request #1604](https://github.com/INN/largo/pull/1604).
 - Cleans up the search page when no query has been entered. [Pull request #1604](https://github.com/INN/largo/pull/1604) for [issue #1603](https://github.com/INN/largo/issues/1603).
